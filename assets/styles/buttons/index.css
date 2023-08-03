@@ -6,6 +6,9 @@
   border-radius: 50%;
   border: 1px solid black;
   color: black;
+  background-image: url("../../imgs/arrow.png");
+  background-repeat: no-repeat;
+  background-position: 8px center;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -17,4 +20,5 @@
 }
 .slider-btn.slider-nextbtn {
   right: 0;
+  transform: rotate(180deg);
 }/*# sourceMappingURL=index.css.map */
