@@ -9,21 +9,26 @@ function slider() {
   const nextBtn = document.querySelector('.slider-nextbtn');
   let currentSlide = 0;
   let numberCards = 0;
-
+  let cardsLength = cards.length % 2 === 0 ? cards.length : cards.length + 1;
+  
   if (window.innerWidth <= 750) {
     numberCards = 1;
+    cardsLength = cards.length;
   } else if (window.innerWidth <= 1024) {
     numberCards = 2;
   } else {
     numberCards = 4;
   }
 
-
   const slideWidth = sliderTrack.clientWidth;
+
+  function resetSlide() {
+    updateSliderPosition(sliderTrack, slideWidth, currentSlide);
+  }
 
   function showPrevSlide() {
     if (currentSlide == 0) {
-      currentSlide = cards.length / numberCards - 1;
+      currentSlide = cardsLength / numberCards - 1;
     } else {
       currentSlide = Math.max(currentSlide - 1, 0);
     }
@@ -31,16 +36,18 @@ function slider() {
   }
 
   function showNextSlide() {
-    if (currentSlide == cards.length / numberCards - 1) {
+    if (currentSlide == cardsLength / numberCards - 1) {
       currentSlide = 0;
     } else {
-      currentSlide = Math.min(currentSlide + 1, cards.length / numberCards - 1);
+      currentSlide = Math.min(currentSlide + 1, cardsLength / numberCards - 1);
     }
     updateSliderPosition(sliderTrack, slideWidth, currentSlide);
   }
 
   prevBtn.addEventListener('click', showPrevSlide);
   nextBtn.addEventListener('click', showNextSlide);
+
+  resetSlide();
 }
 
 document.addEventListener('DOMContentLoaded', slider);
